@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Pedal } from '../pedal';
 import { PedalService } from '../pedal.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-pedals',
@@ -11,7 +13,7 @@ export class PedalsComponent implements OnInit {
   pedals: Pedal[] = [];
   selectedPedal?: Pedal;
 
-  constructor(private pedalService: PedalService) {}
+  constructor(private pedalService: PedalService, private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.getPedals();
@@ -19,6 +21,7 @@ export class PedalsComponent implements OnInit {
 
   onSelect(pedal: Pedal): void {
     this.selectedPedal = pedal;
+    this.messageService.add(`Pedals`)
   }
 
   getPedals(): void {
